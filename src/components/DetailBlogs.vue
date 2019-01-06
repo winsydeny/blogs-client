@@ -9,14 +9,14 @@
         </div>
         <div class="comment">
             <form>
-                <textarea></textarea>
-                <input type="button" value="submit">
+                <textarea v-model="comments.content"></textarea>
+                <input type="button" value="submit" @click="comment">
             </form>
         </div>
     </div>
 </template>
 <script>
-import {remove,get} from '../api/axios'
+import {remove,get, post} from '../api/axios'
     export default {
         name:'detail',
         data(){
@@ -27,10 +27,28 @@ import {remove,get} from '../api/axios'
                     content:'',
                     author:'',
                     categories:''
+                },
+                comments:{
+                    authorId:this.$route.params.id,
+                    content:''
                 }
             }
         },
         methods:{
+            comment(){
+                console.log("commit");
+                if(this.comments.content == '') return alert("不能为空");
+                post(`/comment/`,this.comments).then((data) => {
+                    console.log(data);
+                    if(data.status === 200){
+                        this.comments.content = "";
+                        alert("评论成功");
+                    }else{
+                        alert("失败");
+                    }
+                },(err) => {console.log(err);})
+              
+            },
             goback(){
                 this.$router.push({path:'/'});
             },
@@ -60,50 +78,51 @@ import {remove,get} from '../api/axios'
         },
     }
 </script>
-<style scoped>
-  
-    
+<style lang="scss" scope>
+    $mainbg:gray;
+    $textareaColor:rgb(0, 179, 15);
+    $inputbg:red;
     .main{
         width: 80%;
         min-width: 50%;
         height: auto;
         margin: 0 auto;
-        background: gray;
-    }
-    h1{
+        background: $mainbg;
         text-align: center;
+        p{
+           padding: 10px;
+            font-size: 20px; 
+        }
+        
     }
-    p{
-        padding: 10px;
-        font-size: 20px;
-        text-align: center;
-    }
-    .comment form{
-        width: 34%;
-        margin: 0 auto;
-        height: auto;
-    }
-    .comment form textarea{
-        width: 100%;
-        resize: none;
-        height: 80px;
-        border: none;
-        border-radius: 6px;
-        outline: none;
-        padding: 12px;
-        font-size: 23px;
-        color: rgb(0, 179, 15);
+    .comment{
+        form{
+            width: 34%;
+            margin: 0 auto;
+            height: auto;
+            textarea{
+                 width: 100%;
+                resize: none;
+                height: 80px;
+                border: none;
+                border-radius: 6px;
+                outline: none;
+                padding: 12px;
+                font-size: 23px;
+                color:$textareaColor;
+            };
+            input{
+                padding: 6px 12px;
+                background: $inputbg;
+                color: white;
+                border: none;
+                border-radius: 4px;
+                cursor: pointer;
+                float:right;
+                outline: none;
+            }
 
-    }
-    .comment form input{
-        padding: 6px 12px;
-        background: red;
-        color: white;
-        border: none;
-        border-radius: 4px;
-        cursor: pointer;
-        float:right;
-        outline: none;
+        }
     }
 
 </style>
