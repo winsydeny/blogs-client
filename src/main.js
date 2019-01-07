@@ -17,6 +17,10 @@ Vue.directive('rainbow',{
      }
     }
 });
+
+
+
+
 // Vue.filter('toUpperCase',(value)=>{
 //   return value.toUpperCase();
 // })

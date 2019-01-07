@@ -54,7 +54,7 @@ import {post} from '../api/axios'
                     alert('error');
                 }else{
                      this.onsubmit = true;
-                    post('/add',this.blog)
+                    post('/api/add',this.blog)
                     .then((data)=>{
                         console.log(data);
                     },(err)=>{

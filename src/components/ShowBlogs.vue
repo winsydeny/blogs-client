@@ -24,7 +24,7 @@ export default {
   methods: {
     showlist() {
         // get('/').then((data)=>{console.log(data)})
-        get('/').then((data)=>{
+        get('/api/total_list').then((data)=>{
             if(data.data.length === 0){
                 this.shows = true;
             }else{

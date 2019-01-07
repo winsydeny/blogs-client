@@ -53,7 +53,7 @@ import {remove,get, post} from '../api/axios'
                 this.$router.push({path:'/'});
             },
             del(){
-                remove(`/detail/?${this.id}`).then((data)=>{
+                remove(`/api/detail/?${this.id}`).then((data)=>{
                     alert("has been deleted!")
                    this.goback();
                 },(err)=>{
@@ -61,7 +61,7 @@ import {remove,get, post} from '../api/axios'
                 })
             },
             getdetail(){
-                get(`/detail/?${this.id}`)
+                get(`/api/detail/?${this.id}`)
                 .then((data)=>{
                     console.log(data.data);
                     this.dblog.title = data.data[0].title;

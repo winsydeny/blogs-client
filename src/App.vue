@@ -2,12 +2,15 @@
   <div id="app">
     <div class="header">
       <ul>
-        <li><router-link to="/">All Blogs</router-link></li>
-        <li><router-link to="/add">Add Blogs</router-link></li>
+          <li><router-link to="/">Home</router-link></li>
+          <li><router-link to="/about">About</router-link></li>
+          <li><router-link to="/add">Add Blogs</router-link></li>
+          <li><router-link to="/login">Login</router-link></li>
       </ul>
     </div>
     <div class="contain">
           <router-view></router-view>
+          
     </div>
     <div class="footer"><p>Copy@2018</p></div>
   </div>
@@ -16,7 +19,6 @@
 <script>
 import AddBlogs from './components/AddBlogs'
 import ShowBlogs from './components/ShowBlogs'
-
 
 export default {
   name: 'App',
@@ -42,37 +44,35 @@ html,body,#app{
   .header{
     width: 100%;
     height: 10%;
+     background: rgb(63, 61, 61);
   } 
   .header ul{
     height: 100%;
-    background: rgb(63, 61, 61);
-    /* position: fixed; */
-    /* top: 0; */
+    margin-right:80px;
+     float: right;
+   
   }
   .header li{
     display: inline-block;
   }
   .header li a{
-    position:absolute;
-    right: 30px;
+    /* position:absolute; */
+   
     color: #fff;
     text-decoration: none;
     padding: 3px 6px;
-    border-radius: 6px;
-    border: 1px solid  rgb(231, 2, 2);
-    background: rgb(231, 2, 2);
+    line-height: 100px;
   }
   .header li:nth-child(1) a{
-      right: 130px;
+      /* right: 130px; */
   }
   .header .router-link-exact-active{
-    background: rgb(136, 3, 3);
+
   }
   .footer{
     width: 100%;
     height: 5%;
-      /* position: absolute;
-      bottom: 0; */
+    
     background: rgb(63, 61, 61);
   }
   .footer p{
