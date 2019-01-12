@@ -78,7 +78,7 @@ import {post} from '../api/axios'
         },
     }
 </script>
-<style>
+<style lang="scss">
 #add{ width: 50%;min-width: 300px;margin: 0 auto;padding-top: 20px;}
     #forms label{
         display: block;
@@ -88,6 +88,7 @@ import {post} from '../api/axios'
     #forms input,textarea{
         width: 90%;
         padding: 8px;
+        resize: none;
         
 
     }

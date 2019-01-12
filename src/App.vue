@@ -19,11 +19,25 @@
 <script>
 import AddBlogs from './components/AddBlogs'
 import ShowBlogs from './components/ShowBlogs'
-
+import store from './store/index'
+import jwt from 'jsonwebtoken'
 export default {
   name: 'App',
   components: {
     AddBlogs,ShowBlogs
+  },
+  methods:{
+    commit(){
+      const token = localStorage.getItem('token');
+      const jt = jwt.decode(token);
+      store.dispatch({
+        type:'updateUser',
+        user:jt
+      })
+    }
+  },
+  created(){
+    this.commit();
   }
 }
 </script>

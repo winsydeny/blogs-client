@@ -54,7 +54,9 @@ import {remove,get, post} from '../api/axios'
             },
             del(){
                 remove(`/api/detail/?${this.id}`).then((data)=>{
-                    alert("has been deleted!")
+                    
+                   alert(data.data);
+
                    this.goback();
                 },(err)=>{
                     throw err;

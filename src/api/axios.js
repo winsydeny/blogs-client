@@ -9,5 +9,16 @@ export const post = (url,data) => {
     return axios.post(url,data);
 }
 export const remove = (url) =>{
+    
     return axios.delete(url);
 }
+
+
+axios.interceptors.request.use((config) => {
+    const token = localStorage.getItem('token');
+    // console.log(token);
+    axios.defaults.headers.common['Authorization'] = token;
+    return config;
+},(error) => {
+    return Promise.reject(error);
+});
