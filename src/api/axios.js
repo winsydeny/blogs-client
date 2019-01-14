@@ -13,7 +13,7 @@ export const remove = (url) =>{
     return axios.delete(url);
 }
 
-
+// interceptors 
 axios.interceptors.request.use((config) => {
     const token = localStorage.getItem('token');
     // console.log(token);

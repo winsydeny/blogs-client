@@ -9,7 +9,8 @@ import router from './router/index.js'
 Vue.config.productionTip = false
 // Vue.use(vueReource)
 import store from './store/index.js'
-
+import ElementUI from 'element-ui';
+import 'element-ui/lib/theme-chalk/index.css';
 //自定义指令
 Vue.directive('rainbow',{
    bind(el,binging,vnode){
@@ -18,7 +19,7 @@ Vue.directive('rainbow',{
      }
     }
 });
-
+Vue.use(ElementUI);
 
 
 // use vuex

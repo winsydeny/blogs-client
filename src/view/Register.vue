@@ -22,8 +22,13 @@ export default {
     },
     methods:{
         register(){
-            post('/api/register',this.userinfo).then((data) => {
-                console.log(data);
+            post('/api/register',this.userinfo).then((res) => {
+                console.log(res);
+                if(res.data.success){
+                    alert("注册成功");  
+                }else{
+                    alert(res.data.error);
+                }
             },(err)=>{console.log(err)})
         }
     }

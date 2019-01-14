@@ -6,15 +6,48 @@ import DetailBlogs from '../components/DetailBlogs'
 import About from '../components/About'
 import Login from '../view/Login'
 import Register from '../view/Register'
+import Categories from '../view/Categories'
 Vue.use(vueRouter)
 let router = new vueRouter({
     routes:[
-        {path:'/',component:ShowBlogs},
-        {path:'/add',component:AddBlogs},
-        {path:'/about',component:About},
-        {path:'/login',component:Login},
-        {path:'/register',component:Register},
-        {path:'/:id',component:DetailBlogs},
+        {
+            path:'/',
+            name:'showblogs',
+            component:ShowBlogs
+        },
+        {
+            path:'/user/add',
+            name:'add',
+            component:AddBlogs
+        },
+        {
+            path:'/categories',
+            name:'categories',
+            component:Categories
+        },
+        {
+            path:'/about',
+            name:'about',
+            component:About
+        },
+        {
+            path:'/login',
+            name:'Login',
+            component:Login
+        },
+        {
+            path:'/register',
+            name:'register',
+            component:Register
+        },
+        
+        {
+            path:'/:id',
+            name:'detailblogs',
+            component:DetailBlogs
+        },
+        
+        
         
     ],
     mode:'history'

@@ -4,13 +4,32 @@
             <h1>{{ dblog.title }}</h1><hr style="color:red">
             <p>{{dblog.content}}</p>
             <p>{{dblog.author}}</p>
-            <p>sort:{{dblog.categories}}</p>
-            <button @click="del">delete</button>
+           <el-row>
+               <el-col :span="10"><p class="sort">sort:{{dblog.categories}}</p></el-col>
+               <el-col :span="14"><el-button class="sort" style="float:right;margin-right:12px;" type="danger" @click="del">delete</el-button></el-col>
+           </el-row>
         </div>
         <div class="comment">
+           
             <form>
+                <el-row>
+                    <el-col class="Comment-title">Comment:</el-col>
+                </el-row>
                 <textarea v-model="comments.content"></textarea>
-                <input type="button" value="submit" @click="comment">
+                <!-- <input type="button" value="submit" @click="comment"> -->
+                <el-row>
+                    <el-col :span="20">
+                        <el-button type="primary" icon="el-icon-edit" circle></el-button>
+                    </el-col>
+                <!-- <el-button type="success" icon="el-icon-check" circle></el-button>
+                <el-button type="info" icon="el-icon-message" circle></el-button>
+                <el-button type="warning" icon="el-icon-star-off" circle></el-button>
+                <el-button type="danger" icon="el-icon-delete" circle></el-button> -->
+                    <el-col :span="4">
+                        <el-button type="success">Comment</el-button>
+
+                    </el-col>
+                </el-row>
             </form>
         </div>
     </div>
@@ -81,7 +100,7 @@ import {remove,get, post} from '../api/axios'
     }
 </script>
 <style lang="scss" scope>
-    $mainbg:gray;
+    $mainbg:rgb(192, 188, 188);
     $textareaColor:rgb(0, 179, 15);
     $inputbg:red;
     .main{
@@ -95,13 +114,25 @@ import {remove,get, post} from '../api/axios'
            padding: 10px;
             font-size: 20px; 
         }
+        .sort{
+            text-align: left;
+            margin-top: 100px;
+        }
         
     }
     .comment{
+        position: relative;
+        top: 300px;
         form{
             width: 34%;
             margin: 0 auto;
             height: auto;
+            .Comment-title{
+                font-size: 26px;
+                font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+                // color:white;
+                padding: 10px 0;
+            }
             textarea{
                  width: 100%;
                 resize: none;

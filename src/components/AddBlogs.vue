@@ -6,22 +6,37 @@
             <input type="text" v-model="blog.title"> 
             <label>Blog-Content</label>
             <textarea v-model="blog.content"></textarea>
-            <p>还剩:{{ count }}字可输入</p>
-            <div id="checkboxes">
-                <label>Vue.js</label>
-                <input type="checkbox" value="vue.js" v-model="blog.categories">
-                <label>Node.js</label>
+            <p style="text-align:right">Already Enter {{ count }} words</p>
+            <el-row id="checkboxes">
+                <!-- <label>Vue.js</label> -->
+                <!-- <input type="checkbox" value="vue.js" v-model="blog.categories"> -->
+                <el-row><p>Categories:</p></el-row>
+                <el-col>
+                 <el-checkbox v-model="blog.categories" label="Vue.js"></el-checkbox>
+                 <el-checkbox v-model="blog.categories" label="Node.js"></el-checkbox>
+                 <el-checkbox v-model="blog.categories" label="React.js"></el-checkbox>
+                 <el-checkbox v-model="blog.categories" label="Angular 4"></el-checkbox>
+                </el-col>
+                <!-- <label>Node.js</label>
                 <input type="checkbox" value="Node.js" v-model="blog.categories">
                 <label>React.js</label>                
                 <input type="checkbox" value="React.js" v-model="blog.categories">
                 <label>Angular4</label>                
-                <input type="checkbox" value="Angular4.js" v-model="blog.categories">
-            </div>
+                <input type="checkbox" value="Angular4.js" v-model="blog.categories"> -->
+            </el-row>
             <label id="author">Author</label>
-            <select v-model="blog.author">
+            <!-- <select v-model="blog.author">
                 <option v-for="(item, index) in authors" :key="index">{{ item }}</option>
-            </select>
-            <button v-on:click.prevent="submit">Add</button>
+            </select> -->
+             <el-select v-model="value" placeholder="请选择">
+                <el-option
+                v-for="item in options"
+                :key="item.value"
+                :label="item.label"
+                :value="item.value">
+                </el-option>
+            </el-select>
+            <el-button v-on:click.prevent="submit" type="success">success</el-button>
         </form>  
         <div v-if="onsubmit">
             <h1>Thanks</h1>    
@@ -30,6 +45,8 @@
 </template>
 <script>
 import {post} from '../api/axios'
+
+
     export default{
         name:'add',
         data(){
@@ -41,6 +58,20 @@ import {post} from '../api/axios'
                     author:'',
                     
                 },
+                 options: [{
+                    value: '选项1',
+                    label: 'Tim'
+                    }, {
+                    value: '选项2',
+                    label: 'Jack'
+                    }, {
+                    value: '选项3',
+                    label: 'Jason'
+                    }, {
+                    value: '选项4',
+                    label: 'Sydeny'
+                    },],
+                value:'',
                 authors:['Kim','Herrny','Sydeny'],
                 onsubmit:false,
                 alert:false               
@@ -66,15 +97,11 @@ import {post} from '../api/axios'
         },
         computed: {
             count(){
-                let ct = 100 - this.blog.content.length;
+                let ct = this.blog.content.length;
 
-                if(ct < 0){
-                   alert("不可输入了");
-                }
-                else{
-                    return ct;
-                }
-            }
+               return ct;
+            },
+        
         },
     }
 </script>
@@ -86,14 +113,12 @@ import {post} from '../api/axios'
         font-weight: bold;
     }
     #forms input,textarea{
-        width: 90%;
+        width: 100%;
         padding: 8px;
         resize: none;
-        
-
     }
     #forms textarea{
-        height: 200px;
+        height: 600px;
         font-size: 22px;
         font-weight: 600;
     }
@@ -108,14 +133,5 @@ import {post} from '../api/axios'
     #forms #author{
         display: inline-block;
     }
-    #forms button{
-        display: block;
-        width: 60px;
-        height: auto;
-        padding: 6px;
-        border-radius: 3px;
-        border: none;
-        background: crimson;
-        color: #fff;
-    }
+    
 </style>
